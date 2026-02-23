@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EarthCoin</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 40px;
+      letter-spacing: 2px;
+    }
+
+    .globe-container {
+      margin-top: 30px;
+    }
+
+    .globe {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/Earthmap1000x500compac.jpg');
+      background-size: cover;
+      animation: spin 20s linear infinite;
+      margin: auto;
+      box-shadow: 0 0 40px #00ff99;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coverage {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,255,150,0.6);
+      transition: height 1s ease;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .info {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+
+    .bar {
+      width: 80%;
+      height: 20px;
+      background: #222;
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: #00ff99;
+      width: 0%;
+      transition: width 1s ease;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌍 EarthCoin</h1>
+
+<div class="globe-container">
+  <div class="globe">
+    <div class="coverage" id="coverage"></div>
+  </div>
+</div>
+
+<div class="info">
+  <p>Total Supply: 1,000,000,000</p>
+  <p>Habitable Land: 71,000,000 km²</p>
+  <p>Circulating Supply: <span id="supply">25000000</span></p>
+  <p>Land Occupied: <span id="percent">0</span>%</p>
+
+  <div class="bar">
+    <div class="bar-fill" id="barFill"></div>
+  </div>
+
+  <p>1 EarthCoin = 71,000 m² of habitable Earth</p>
+  <p>CA: YOUR_CONTRACT_ADDRESS_HERE</p>
+</div>
+
+<script>
+  let totalSupply = 1000000000;
+  let circulating = 25000000; // Change this number manually anytime
+
+  let percent = (circulating / totalSupply) * 100;
+
+  document.getElementById("percent").innerText = percent.toFixed(2);
+  document.getElementById("coverage").style.height = percent + "%";
+  document.getElementById("barFill").style.width = percent + "%";
+</script>
+
+</body>
+</html>
